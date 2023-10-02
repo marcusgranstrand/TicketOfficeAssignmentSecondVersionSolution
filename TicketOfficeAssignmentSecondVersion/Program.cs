@@ -6,16 +6,10 @@ while (true)
 
 	Console.WriteLine("Welcome to the Ticket Office!");
 
-	Methods.GetCustomerAge();
-	Methods.GetCustomerPlacePreference();
+	var age = Methods.GetCustomerAge();
+	var place = Methods.GetCustomerPlacePreference();
 
-	/*
-	 *	First tried to set the GetCustomerAge() and GetCustomerPlacePreference() 
-	 *	as parameters of PriceSetter but it didn´t want to and suggested to go back to "old-main" style 
-	 *	and still required more stuff so I accepted my limitations in programming so far 
-	 */
-
-	Methods.PriceSetter(Methods.ageEntered);
+	Methods.PriceSetter(age, place);
 	Methods.TaxCalculator(Methods.price);
 	Methods.TicketNumberGenerator();
 	Methods.Confirmation(Methods.price, Methods.tax, Methods.ticketNumber);

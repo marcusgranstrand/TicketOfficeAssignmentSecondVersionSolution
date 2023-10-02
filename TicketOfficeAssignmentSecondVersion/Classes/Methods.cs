@@ -15,33 +15,35 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 		public static int ticketNumber = 0;
 		public static decimal tax = 0;
 
-		public static int PriceSetter(int ageEntered)
+		public static EnumClass seating = GetCustomerPlacePreference();
+
+		public static int PriceSetter(int ageEntered, EnumClass seating)
 		{
 			//int price = 0;
 			if (ageEntered <= 11)
 			{
-				switch (seatingString)
+				switch (seating)
 				{
-					case "Seated": return price = 50;
-					case "Standing": return price = 25;
+					case EnumClass.Seated: return price = 50;
+					case EnumClass.Standing: return price = 25;
 				}
 			}
 
 			if (ageEntered >= 12 && ageEntered <= 64)
 			{
-				switch (seatingString)
+				switch (seating)
 				{
-					case "Seated": return price = 170;
-					case "Standing": return price = 110;
+					case EnumClass.Seated: return price = 170;
+					case EnumClass.Standing: return price = 110;
 				}
 			}
 
 			if (ageEntered >= 65)
 			{
-				switch (seatingString)
+				switch (seating)
 				{
-					case "Seated": return price = 100;
-					case "Standing": return price = 60;
+					case EnumClass.Seated: return price = 100;
+					case EnumClass.Standing: return price = 60;
 				}
 			}
 
@@ -141,7 +143,7 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 			return ageEntered;
 		}
 
-		public static string GetCustomerPlacePreference()
+		public static EnumClass GetCustomerPlacePreference()
 		{
 			string temp;
 			do
@@ -156,7 +158,11 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 
 			Console.ReadKey();
 
-			return seatingString;
+			if(seatingString == "Seated")
+				return (EnumClass)0;
+			else
+				return (EnumClass)1;
+
 		}
 
 
