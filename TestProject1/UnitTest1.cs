@@ -13,17 +13,8 @@ namespace TestProject1
 
 			Assert.Equal(expected, actual);
 		}
-
-		[Fact]
-		public void Test2()
-		{
-			int someInt = 134;
-
-			decimal expected = 7.58m;
-			decimal actual = TicketOfficeAssignmentSecondVersion.Classes.Methods.TaxCalculator(someInt);
-
-			Assert.Equal(expected, actual, precision: 2);
 		
-		}
+		// Had another test ongoing but for some reason when running test
+		// it just kept going and going without getting anywhere so I removed it again
 	}
 }

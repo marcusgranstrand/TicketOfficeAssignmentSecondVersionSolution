@@ -15,46 +15,9 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 		public static int ticketNumber = 0;
 		public static decimal tax = 0;
 
-		public static EnumClass seating = GetCustomerPlacePreference();
+		public static string? Age {  get; set; }
 
-		public static int PriceSetter(int ageEntered, EnumClass seating)
-		{
-			//int price = 0;
-			if (ageEntered <= 11)
-			{
-				switch (seating)
-				{
-					case EnumClass.Seated: return price = 50;
-					case EnumClass.Standing: return price = 25;
-				}
-			}
-
-			if (ageEntered >= 12 && ageEntered <= 64)
-			{
-				switch (seating)
-				{
-					case EnumClass.Seated: return price = 170;
-					case EnumClass.Standing: return price = 110;
-				}
-			}
-
-			if (ageEntered >= 65)
-			{
-				switch (seating)
-				{
-					case EnumClass.Seated: return price = 100;
-					case EnumClass.Standing: return price = 60;
-				}
-			}
-
-			return price;
-		}
-
-		public static decimal TaxCalculator(int price)
-		{
-			tax = (decimal)(1 - 1 / 1.06) * price;
-			return tax;
-		}
+		//public static EnumClass seating = GetCustomerPlacePreference();	Comment since no seating entered by user
 
 		public static int TicketNumberGenerator()
 		{
@@ -77,16 +40,11 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 			bool availability = true;
 
 			string myText1 = Convert.ToString(ticketNumber);
-
-			//First dabbled a bit with checking character by character, but got into exception problems (indexing)
-			// so managed to solve it with splitting the placeList into seperate strings and comparing them to the
-			// converted ticketNumberwith a foreach instead
-
+						
 			string[] splitted = placeList.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
 			foreach (string s in splitted)
-			{
-				//Console.WriteLine($"Substring: {s}");
+			{				
 				if (s.Equals(myText1))
 					availability = false;
 			}
@@ -116,17 +74,16 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 		public static int GetCustomerAge()
 		{
 			bool check = false;
-			string age = "";
-
+			
 			while (!check)
 			{
 				Console.WriteLine("Please enter your age: ");
-				age = Console.ReadLine();
-				if (age.Length <= 3)
+				Age = Console.ReadLine();
+				if (Age.Length <= 3)
 				{
-					for (int i = 0; i < age.Length; i++)
+					for (int i = 0; i < Age.Length; i++)
 					{
-						if (age[i] > '0' && age[i] <= '9')
+						if (Age[i] > '0' && Age[i] <= '9')
 						{
 							check = true;
 						}
@@ -137,15 +94,15 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 			}
 
 			Console.WriteLine(check);
-			Console.WriteLine(age);
-			int ageEntered = Convert.ToInt32(age);
+			Console.WriteLine(Age);
+			int ageEntered = Convert.ToInt32(Age);
 
 			return ageEntered;
 		}
 
 		public static EnumClass GetCustomerPlacePreference()
 		{
-			string temp;
+			string? temp;
 			do
 			{
 				Console.WriteLine("Please enter if you want seated or standing placing: ");
@@ -162,16 +119,6 @@ namespace TicketOfficeAssignmentSecondVersion.Classes
 				return (EnumClass)0;
 			else
 				return (EnumClass)1;
-
 		}
-
-
-
-
-
-
-
-
-
 	}
 }
